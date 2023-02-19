@@ -2,7 +2,7 @@ import { faker } from "@faker-js/faker";
 import bcrypt from "bcrypt";
 // https://chancejs.com/usage/node.html
 // https://fakerjs.dev/api/commerce.html#price
-import { recipeCategories, ingredients, recipes, areas} from "./raw-data/meals.js";
+import { recipeCategories, ingredients, recipes, areas } from "./raw-data/meals.js";
 
 import dotenv from "dotenv";
 dotenv.config();
@@ -13,7 +13,7 @@ let PROTOCOL = 'http://';
 let HOST = config.get('host');
 let PORT = config.get('port');
 const ABSOLUTE_IMG_URL = false;
-let HOST_FOR_IMAGE = ABSOLUTE_IMG_URL ? HOST == 'localhost' ? `${PROTOCOL}${HOST}:${PORT}` : `${PROTOCOL}${HOST}` : '' ;
+let HOST_FOR_IMAGE = ABSOLUTE_IMG_URL ? HOST == 'localhost' ? `${PROTOCOL}${HOST}:${PORT}` : `${PROTOCOL}${HOST}` : '';
 
 
 
@@ -29,9 +29,19 @@ var database = {
   recipes: [],
   areas: [],
   recipeTags: [],
-  orders: []
+  orders: [],
+  products: []
 };
 
+
+//for createing some products
+for (let i = 1; i <= 50; i++) {
+  database.products.push({
+    id: i,
+    name: faker.commerce.product(),
+    company: faker.company.name()
+  })
+}
 // 336 cats for simple apps
 for (var i = 1; i <= 336; i++) {
   database.cats.push({
@@ -57,7 +67,7 @@ database.users.push({
   email: "admin@mail.com",
   password: bcrypt.hashSync("admin", 10),
   avatar: faker.image.avatar(),
-  userLevel: getRandomInt(1,5),
+  userLevel: getRandomInt(1, 5),
   createdAt: Date.now(),
 });
 
@@ -71,7 +81,7 @@ for (var i = 2; i <= 50; i++) {
     email: faker.internet.email(),
     password: bcrypt.hashSync(username, 10),
     avatar: faker.image.avatar(),
-    userLevel: getRandomInt(1,5),
+    userLevel: getRandomInt(1, 5),
     createdAt: Date.now(),
   });
 }
@@ -169,7 +179,7 @@ areas.forEach((item, index) => {
 let areasDirectory = database.areas.reduce(((acc, item) => {
   acc[item.name] = item.id;
   return acc;
-}),{})
+}), {})
 
 let recipeTagsDirectory = {};
 let recipeTagIndex = 0;
@@ -181,9 +191,9 @@ recipes.forEach((item) => {
       if (trimmedTag) {
         if (!(trimmedTag in recipeTagsDirectory)) {
           recipeTagIndex++;
-  
+
           recipeTagsDirectory[trimmedTag] = recipeTagIndex;
-  
+
           database.recipeTags.push({
             id: recipeTagIndex,
             name: trimmedTag,
@@ -211,7 +221,7 @@ recipes.forEach((item) => {
   }
 
   let ingredients = [];
-  for (let i=1; i <= 20; i++) {
+  for (let i = 1; i <= 20; i++) {
     let ingredientKey = `strIngredient${i}`;
     let measureKey = `strMeasure${i}`;
     if (item[ingredientKey]) {
@@ -250,8 +260,8 @@ database.orders.push({
   id: 1,
   userId: 1,
   items: [
-    { recipeId: 52768, quantity: getRandomInt(1,5),},
-    { recipeId: 52893, quantity: getRandomInt(1,5),}
+    { recipeId: 52768, quantity: getRandomInt(1, 5), },
+    { recipeId: 52893, quantity: getRandomInt(1, 5), }
   ]
 })
 
