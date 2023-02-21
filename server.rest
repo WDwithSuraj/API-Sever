@@ -7,11 +7,11 @@ POST http://localhost:9090/products
 Content-Type: application/json
 
     {
-    "username": "alibaba",
-    "firstname": "ali",
-    "lastname": "baba",
-    "email": "ali@mail.com",
-    "password": "alibaba",
+    "username": "joker ki haweli",
+    "firstname": "joker",
+    "lastname": "bakalba",
+    "email": "joker@mail.com",
+    "password": "joker",
     "avatar": "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/304.jpg"
     }
 
