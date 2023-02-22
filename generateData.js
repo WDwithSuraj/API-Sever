@@ -35,13 +35,13 @@ var database = {
 
 
 //for createing some products
-for (let i = 1; i <= 50; i++) {
-  database.products.push({
-    id: i,
-    name: faker.commerce.product(),
-    company: faker.company.name()
-  })
-}
+// for (let i = 1; i <= 50; i++) {
+//   database.products.push({
+//     id: i,
+//     name: faker.commerce.product(),
+//     company: faker.company.name()
+//   })
+// }
 // 336 cats for simple apps
 for (var i = 1; i <= 336; i++) {
   database.cats.push({
